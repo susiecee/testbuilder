@@ -7,6 +7,14 @@
 // other places in this file where you'll replace the FILL_ME_IN with a
 // different value.
 var FILL_ME_IN = 'Fill this value in';
+let loop = function() {
+  for (var prefix = startPre; prefix <= endPre; prefix++) {
+    (function(prefix) {
+      it('has a prefix of ' + prefix + ' and a length of 16');
+      it('has a prefix of ' + prefix + ' and a length of 19');
+    })(prefix)
+    }
+}
  
 describe('Introduction to Mocha Tests - READ ME FIRST', function() {
   // A Mocha test is just a function!
@@ -152,11 +160,28 @@ describe('Discover', function() {
   it('has a prefix of 6011 and a length of 19', function (){
     detectNetwork('6011567890123456789').should.equal('Discover');
   });
+
+  it('has a prefix of 65 and a length of 16', function(){
+    detectNetwork('6511567890123456').should.equal('Discover');
+  });
+
+  it('has a prefix of 65 and a length of 19', function (){
+    detectNetwork('6511567890123456789').should.equal('Discover');
+  });
+
 });
 
 describe('Maestro', function() {
   var should = chai.should(); 
 
+  // for (var prefix = startPre; prefix <= endPre; prefix++) {
+  //   (function(prefix) {
+  //     it('has a prefix of ' + prefix + ' and a length of 16');
+  //     detectNetwork('501856789012').should.equal()
+  //     it('has a prefix of ' + prefix + ' and a length of 19');
+  //   })(prefix)
+  //   }
+
   it('has a prefix of 5018 and a length of 12'), function(){
     detectNetwork('501856789012').should.equal('Maestro');  
   }
@@ -164,8 +189,17 @@ describe('Maestro', function() {
   it('has a prefix of 5018 and a length of 12'), function(){
     detectNetwork('501856789012').should.equal('Maestro');  
   }
-  
  });
 
 describe('should support China UnionPay')
 describe('should support Switch')
+
+
+// let loop = function() {
+//   for (var prefix = startPre; prefix <= endPre; prefix++) {
+//     (function(prefix) {
+//       it('has a prefix of ' + prefix + ' and a length of 16');
+//       it('has a prefix of ' + prefix + ' and a length of 19');
+//     })(prefix)
+//     }
+// }
