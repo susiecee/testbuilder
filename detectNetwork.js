@@ -45,12 +45,11 @@ if ((count === 14) && (prefix === '38'  || prefix === '39')) {
   if ((count === 16) && (prefix=== '51'  || prefix=== '52' || prefix=== '53'|| prefix === '54' || prefix === '55')) {
     return ('MasterCard');
     }
-  if ((count === 16 || count === 19) && (cardNumber[0]+cardNumber[1]+cardNumber[2]+cardNumber[3]=== '6011')) {
+  if ((count === 16 || count === 19) && (cardNumber[0]+cardNumber[1]+cardNumber[2]+cardNumber[3]=== '6011' || cardNumber[0]+cardNumber[1]=== '65')) {
     return ('Discover');
     }
   if ((count === 12 || count === 13 || count ===14 || count ===15 || count ===16 || count ===17 ||count ===18 || count===19) && (fourPre=== '5018' || fourPre === '5020' || fourPre === '5038'|| fourPre === '6304')) {
     return ('Maestro');
     }
-
-
 }
+
