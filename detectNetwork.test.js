@@ -7,7 +7,7 @@
 // other places in this file where you'll replace the FILL_ME_IN with a
 // different value.
 
-let FILL_ME_IN, discoverPrefixes; 
+let FILL_ME_IN, discoverPrefixes, prefixesMaestro; 
 
 FILL_ME_IN = 'Fill this value in';
 
@@ -197,33 +197,18 @@ describe('Discover', function() {
 
 describe('Maestro', function() {
   let should = chai.should(); 
-
-  // for (var prefix = startPre; prefix <= endPre; prefix++) {
-  //   (function(prefix) {
-  //     it('has a prefix of ' + prefix + ' and a length of 16');
-  //     detectNetwork('501856789012').should.equal()
-  //     it('has a prefix of ' + prefix + ' and a length of 19');
-  //   })(prefix)
-  //   }
-
-  it('has a prefix of 5018 and a length of 12'), function(){
-    detectNetwork('501856789012').should.equal('Maestro');  
+  prefixMaestro = ['5018','5020','5038','6304'];
+    
+  for (let length = 12; length <= 19; length++) { 
+    for (let prefix = 0; prefix < prefixMaestro.length; prefix++){
+    (function(length, prefix){
+      it ('has a prefix of ' + prefixMaestro[prefix]+ ' and a length of ' +length, function(){
+        detectNetwork(prefixMaestro[prefix].padEnd(length,'0')).should.equal('Maestro')
+      }); 
+    })(length, prefix);
   }
+}
+}); 
 
-  it('has a prefix of 5018 and a length of 12'), function(){
-    detectNetwork('501856789012').should.equal('Maestro');  
-  }
- });
-
-describe('should support China UnionPay')
-describe('should support Switch')
-
-
-// let loop = function() {
-//   for (var prefix = startPre; prefix <= endPre; prefix++) {
-//     (function(prefix) {
-//       it('has a prefix of ' + prefix + ' and a length of 16');
-//       it('has a prefix of ' + prefix + ' and a length of 19');
-//     })(prefix)
-//     }
-// }
+describe('should support China UnionPay');
+describe('should support Switch');
