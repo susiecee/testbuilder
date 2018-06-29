@@ -6,15 +6,26 @@
 // You don't actually want to fill *this* value in on line 9, but you'll see
 // other places in this file where you'll replace the FILL_ME_IN with a
 // different value.
-var FILL_ME_IN = 'Fill this value in';
-let loop = function() {
-  for (var prefix = startPre; prefix <= endPre; prefix++) {
-    (function(prefix) {
-      it('has a prefix of ' + prefix + ' and a length of 16');
-      it('has a prefix of ' + prefix + ' and a length of 19');
-    })(prefix)
-    }
-}
+
+let FILL_ME_IN, discoverPrefixes; 
+
+FILL_ME_IN = 'Fill this value in';
+
+// discoverPrefixes = function(){
+//   let should = chai.should(); 
+
+//   for (let prefix = 644; prefix <= 649; prefix++) {
+//     (function(prefix){
+            
+//         it ('has a prefix of '+ prefix + ' and a length of 16',function (){ 
+//         detectNetwork(prefix +'5678912568767').should.equal('Discover')
+//         });  
+//         it ('has a prefix of '+ prefix + ' and a length of 19', function (){ 
+//         detectNetwork(prefix +'4567891256876878').should.equal('Discover')
+//         });
+//       })(prefix); 
+//     }
+// }
  
 describe('Introduction to Mocha Tests - READ ME FIRST', function() {
   // A Mocha test is just a function!
@@ -150,7 +161,9 @@ describe('MasterCard', function() {
 });
 
 describe('Discover', function() {
-  var should = chai.should();
+  let should = chai.should();
+  let expect = chai.expect; 
+  
   // Tests without a function will be marked as "pending" and not run
   // Implement these tests (and others) and make them pass!
   it('has a prefix of 6011 and a length of 16', function(){
@@ -168,11 +181,22 @@ describe('Discover', function() {
   it('has a prefix of 65 and a length of 19', function (){
     detectNetwork('6511567890123456789').should.equal('Discover');
   });
-
+ 
+  for (let prefix = 644; prefix <= 649; prefix++) {
+    (function(prefix){
+                 
+        it ('has a prefix of '+ prefix + ' and a length of 16',function (){ 
+        detectNetwork( prefix + '5678912568767').should.equal('Discover')
+        });  
+        it ('has a prefix of '+ prefix + ' and a length of 19', function (){ 
+        detectNetwork(prefix +'4567891256876878').should.equal('Discover')
+        });
+      })(prefix); 
+    }
 });
 
 describe('Maestro', function() {
-  var should = chai.should(); 
+  let should = chai.should(); 
 
   // for (var prefix = startPre; prefix <= endPre; prefix++) {
   //   (function(prefix) {
