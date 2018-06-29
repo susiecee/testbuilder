@@ -35,23 +35,31 @@ let hasPrefix = function (prefix){
   return cardNumber.startsWith(prefix); 
 }
   
-  if ((count === 14) && (hasPrefix('38')  || hasPrefix('39'))) {
+  if ((count === 14) && 
+      (hasPrefix('38')  || hasPrefix('39'))) {
     return ('Diner\'s Club');
     } 
-  if ((count === 15) && (hasPrefix('34')  || hasPrefix('37'))) {
+  if ((count === 15) && 
+      (hasPrefix('34')  || hasPrefix('37'))) {
     return ('American Express');
     }
-  if ((count ===13 || count === 16 || count === 19) && (hasPrefix('4'))) {
+  if ((count ===13 || count === 16 || count === 19) && 
+      (hasPrefix('4'))) {
     return ('Visa');
     }
-  if ((count === 16) && (hasPrefix('51')  || hasPrefix('52') || hasPrefix('53')|| hasPrefix('54') || hasPrefix('55'))) {
+  if ((count === 16) && 
+      (hasPrefix('51')  || hasPrefix('52') || hasPrefix('53')
+      || hasPrefix('54') || hasPrefix('55'))) {
     return ('MasterCard');
     }
-  if ((count === 16 || count === 19) && (hasPrefix('6011') || hasPrefix('65'))) {
+  if ((count === 16 || count === 19) && 
+      (hasPrefix('6011') || hasPrefix('65') || hasPrefix('644') || hasPrefix('645') 
+      || hasPrefix('646') || hasPrefix('647') || hasPrefix('648') || hasPrefix('649'))) {
     return ('Discover');
     }
-  if ((count === 12 || count === 13 || count ===14 || count ===15 || count ===16 || count ===17 ||count ===18 || count===19) && (hasPrefix('5018') || hasPrefix('5020') || hasPrefix('5038')|| hasPrefix('6304'))) {
+  if ((count === 12 || count === 13 || count ===14 || count ===15 ||
+       count ===16 || count ===17 ||count ===18 || count===19) && 
+       (hasPrefix('5018') || hasPrefix('5020') || hasPrefix('5038')|| hasPrefix('6304'))) {
     return ('Maestro');
     }
 }
-
