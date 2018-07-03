@@ -35,22 +35,22 @@ describe('American Express', function() {
 });
 
 describe('Switch', function(){
-  let prefixArray = [4903, 4905, 4911,4936,564182,633110,6333,6759]; 
+  let prefixArray = ['4903', '4905', '4911','4936','564182','633110','6333','6759']; 
 
   let lengthArray = [16,18,19]; 
 
   //loop through the length  
-  for (let length = 0; length <lengthArray.length; length++) {
+  for (let i = 0; i <lengthArray.length; i++) {
     //loop through the prefixArray 
     for(let prefix =0; prefix < prefixArray.length; prefix++){
 
-    let prefixNum = prefixArray[prefix].toString();
+    let prefixNum = prefixArray[prefix];
 
-      (function(length,prefixNum) {
-        it ('has a prefix of ' + prefixNum+ ' and a length of '+ lengthArray[length], function(){
-          detectNetwork(prefixNum.padEnd(lengthArray[length],'0').should.equal('Switch')); 
+      (function(i,prefixNum) {
+        it ('has a prefix of ' + prefixNum+ ' and a length of '+ lengthArray[i], function(){
+          detectNetwork(prefixNum.padEnd(lengthArray[i],'0')).should.equal('Switch'); 
         }) //close unit test  
-      })(length,prefixNum); //close - IIFE 
+      })(i,prefixNum); //close - IIFE 
     } //close loop -prefix
   } // close loop -length
 }); // closing 
