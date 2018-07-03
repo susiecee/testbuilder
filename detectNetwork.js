@@ -1,21 +1,26 @@
 var detectNetwork = function(cardNumber) {
 
-  let count = 0; 
+  var count = 0; 
   
-  let hasPrefix = function (prefix){
+  var hasPrefix = function (prefix){
     return cardNumber.startsWith(prefix); 
     //.startsWith takes in a string to use this function you need to convert numbers to strings
     //prefixes does not need to be a string 
   }
 
+  //==============================================================
+  var prefixCheck = function(prefixArray, cardNumber) {
+    for (let i = 0; i < prefixArray.length; i++) {
+      if (hasPrefix(prefixArray[i])){
+        return true;
+      } 
+    }
+  } 
 
-  let prefixCheck = function (prefixArray , cardNumber) {
+  //==============================================================
+  var rangePrefixCheck = function (prefixArray , cardNumber) {
     // debugger;
     for (let i = 0; i < prefixArray.length; i++) {
-
-      // if there are ranges in the prefixArray 
-      if (prefixArray[i][0] && prefixArray[i][1]) {
-      
           let numToString =  prefixArray[i][0].toString(); 
           let numToStringB = prefixArray[i][1].toString(); 
 
@@ -28,15 +33,9 @@ var detectNetwork = function(cardNumber) {
         if (integerPrefix >= prefixArray[i][0] && 
         integerPrefix <= prefixArray[i][1]) { 
             return true; 
-          }
-        } else {
-      //if there are no ranges, check to see if prefix matches
-        if (hasPrefix(prefixArray[i])){
-          return true;
-        }
-      }
-    }
-  return false;
+        }  
+   }
+   return false; 
 }
   
   //==============================================================
@@ -63,7 +62,7 @@ var detectNetwork = function(cardNumber) {
       return 'American Express';
       }
     if ((count ===16 || count === 18 || count === 19) && 
-      prefixCheck([4903, 4905, 4911,4936,564182,633110,6333,6759], cardNumber)) { 
+      prefixCheck(['4903', '4905', '4911','4936','564182','633110','6333','6759'], cardNumber)) { 
         return 'Switch'; 
       }
     if ((count ===13 || count === 16 || count === 19) && 
@@ -71,28 +70,27 @@ var detectNetwork = function(cardNumber) {
       return 'Visa';
       }
     if ((count === 16) && 
-        (hasPrefix('51')  || hasPrefix('52') || hasPrefix('53')
-        || hasPrefix('54') || hasPrefix('55'))) {
-      return 'MasterCard';
-      }
+      prefixCheck(['51', '52', '53','54','55'], cardNumber)) { 
+        return 'MasterCard'; 
+      }   
     if ((count === 16 || count === 19) && 
-    prefixCheck(['6011', '65', '644','645','646','647','648','649'], cardNumber)) { 
-      return 'Discover'; 
-    }    
+      prefixCheck(['6011', '65', '644','645','646','647','648','649'], cardNumber)) { 
+        return 'Discover'; 
+      }    
     if ((count >= 12 && count <=19) && 
-         (hasPrefix('5018') || hasPrefix('5020') || hasPrefix('5038')|| hasPrefix('6304'))) {
-      return 'Maestro';
+      prefixCheck(['5018','5020','5038','6304'], cardNumber)) {
+        return 'Maestro';
       }
-     if (count >=16 && count <=19) {
-       let prefixArray =       
-       [
-          ['622126','622925'], 
-          ['624','626'],
-          ['6282','6288']
-        ]; 
-        
-        if (prefixCheck(prefixArray, cardNumber) === true) {
-        return 'China UnionPay'; 
-        }
-     }
+    if (count >=16 && count <=19) {
+      var prefixArray =       
+      [
+        ['622126','622925'], 
+        ['624','626'],
+        ['6282','6288']
+      ]; 
+      
+      if (rangePrefixCheck(prefixArray, cardNumber)) {
+      return 'China UnionPay'; 
+      }
+    }
   } // function close
